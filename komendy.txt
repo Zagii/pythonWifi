@@ -1,0 +1,45 @@
+############################ instalacja
+
+###wyczyszczenie
+esptool.py --port COM5 erase_flash
+
+
+###wgranie firmware
+esptool.py --port COM5 --baud 460800 write_flash --flas
+h_size=detect -fm dio 0 esp8266-20180511-v1.9.4.bin
+
+################################## wgrywanie
+
+###uruchomienie pliku bez blokady
+ampy --port COM5 run --no-output WiFi\main.py
+
+
+#### kopiowanie pliku lub katalogu
+ampy --port COM5 put test.py
+
+### kopiowanie pod wskazan¹ sciezke
+ampy --port COM5 put test.py /foo/bar.py
+
+
+##pobranie pliku
+ampy --port COM5 get boot.py
+
+###kopiowanie pod wskazane miejsce
+ampy --port COM5 get boot.py board_boot.py
+
+## tworzenie katalogów 
+ampy --port COM5 mkdir /foo/bar
+
+
+##listowanie katalogu
+ampy --port COM5 ls
+
+##listowanie wybranych folderów
+ampy --port COM5 ls /foo
+
+##usuwanie plikow lub katalogów (pustych)
+ampy --port COM5 rm test.py
+ampy --port COM5 rm /foo/bar
+
+##usuwanie pe³nych katalogów
+ampy --port COM5 rmdir /foo/bar
